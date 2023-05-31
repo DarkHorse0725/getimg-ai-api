@@ -1,0 +1,34 @@
+.app-container {
+  max-width: 1440px;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.input-image {
+  width: 512px;
+  height: auto;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.generate-container {
+  display: flex;
+  gap: 20px;
+}
+
+.form-control-input {
+  width: 350px;
+  padding: 5px 10px;
+}
+
+.input-field {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+.input-field>label {
+  width: 100px;
+}
