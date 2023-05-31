@@ -3,10 +3,11 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
-
   const [selectedImg, setSelectedImg] = useState(null);
   const [outputImg, setOutputImg] = useState(null);
-  const [prompt, setPrompt] = useState("Create WSJ hedcut-style portraits with a vintage newspaper feel, using a simple yet effective line work to capture subjects' unique features. Focus on thick lines, dots, and hatching techniques to suggest contours, facial structure, hair, and accessories. Use stippling to create texture while keeping a minimalist approach. To achieve an old-age newspaper feel, desaturate the colors, limiting them to shades of black and white. Seize the limited color palette to create contrast through shading and bold lines. Apply a texture effect to the portraits and add a halftone filter to create a print-like look. Aim for a WSJ hedcut style while incorporating the vintage printing feel.");
+  const [prompt, setPrompt] = useState(
+    "Create WSJ hedcut-style portraits with a vintage newspaper feel, using a simple yet effective line work to capture subjects' unique features. Focus on thick lines, dots, and hatching techniques to suggest contours, facial structure, hair, and accessories. Use stippling to create texture while keeping a minimalist approach. To achieve an old-age newspaper feel, desaturate the colors, limiting them to shades of black and white. Seize the limited color palette to create contrast through shading and bold lines. Apply a texture effect to the portraits and add a halftone filter to create a print-like look. Aim for a WSJ hedcut style while incorporating the vintage printing feel."
+  );
   const [strength, setStrength] = useState(0.5);
   const [steps, setSteps] = useState(25);
   const [guidance, setGuidance] = useState(9);
@@ -24,7 +25,7 @@ function App() {
       const mimeType = "image/png";
       const tempImg = `${base64String}`;
       setOutputImg(tempImg);
-      const url = "https://api.getimg.ai/v1/stable-diffusion/image-to-image";
+      const url = "https://api.getimg.ai/v1/stable-diffusion/controlnet";
 
       const headers = {
         "Content-Type": "application/json",
@@ -33,6 +34,7 @@ function App() {
 
       const data = {
         model: "realistic-vision-v1-3",
+        controlnet: "lineart-1.1",
         prompt: prompt,
         negative_prompt: "Disfigured, cartoon, blurry",
         image: tempImg,
@@ -43,10 +45,8 @@ function App() {
         num_images: 4,
         scheduler: scheduler,
         output_format: "png",
-        base_resolution: {
-          width: 512,
-          height: 512,
-        },
+        width: 512,
+        height: 512,
       };
       try {
         const result = await axios.post(url, data, {
