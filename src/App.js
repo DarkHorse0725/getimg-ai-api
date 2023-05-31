@@ -3,14 +3,16 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
+
   const [selectedImg, setSelectedImg] = useState(null);
   const [outputImg, setOutputImg] = useState(null);
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState("Create WSJ hedcut-style portraits with a vintage newspaper feel, using a simple yet effective line work to capture subjects' unique features. Focus on thick lines, dots, and hatching techniques to suggest contours, facial structure, hair, and accessories. Use stippling to create texture while keeping a minimalist approach. To achieve an old-age newspaper feel, desaturate the colors, limiting them to shades of black and white. Seize the limited color palette to create contrast through shading and bold lines. Apply a texture effect to the portraits and add a halftone filter to create a print-like look. Aim for a WSJ hedcut style while incorporating the vintage printing feel.");
   const [strength, setStrength] = useState(0.5);
-  const [steps, setSteps] = useState(20);
-  const [guidance, setGuidance] = useState(7.5);
-  const [seed, setSeed] = useState(42);
-  const [scheduler, setScheduler] = useState("dpmsolver++");
+  const [steps, setSteps] = useState(25);
+  const [guidance, setGuidance] = useState(9);
+  const [seed, setSeed] = useState(1887667748);
+  const [scheduler, setScheduler] = useState("euler_a");
+
   const handleProcess = async () => {
     const reader = new FileReader();
     let base64String = "";
